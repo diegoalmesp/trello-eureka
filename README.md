@@ -11,7 +11,7 @@ For the project to build, **these files must exist with exact filenames**:
 
 You can delete or rename the other files.
 
-To know more about this seed project, jus read [this](https://github.com/facebook/create-react-app)
+To know more about this seed project, just read [this](https://github.com/facebook/create-react-app)
 
 ## Pre-requisites
 

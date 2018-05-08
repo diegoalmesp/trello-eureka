@@ -23,6 +23,7 @@ Before start coding in this repo, just install the following:
 To run this application simply clone this repo to your computer, and after execute the following command in the project folder:
 
 ```sh
+$ npm install
 $ npm start
 ```
 

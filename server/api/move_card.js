@@ -4,16 +4,17 @@ import axios from 'axios'
 const { API } = config
 
 export default (req, res) => {
-  if(!req.query.id) res.status(400).send({ error: 'missing id param' })
+  if(!req.query.card_id || !req.query.list_id) res.status(400).send({ error: 'missing params' })
 
-  const board_id = req.query.id
-  const GET_LIST = `${API.URL}/boards/${board_id}?fields=id,name,prefs&lists=open&list_fields=id,name&key=${API.KEY}&token=${API.TOKEN}`
-  axios.get(GET_LIST)
+  const card_id = req.query.card_id
+  const list_id = req.query.list_id
+  const POST_CARD = `${API.URL}/cards/${card_id}?idList=${list_id}&key=${API.KEY}&token=${API.TOKEN}`
+  axios.put(POST_CARD)
     .then(response => {
       res.send({
         status: 'ok',
         payload: response.data
-      })
+       })
     })
     .catch(error => {
       res.send({

@@ -49,6 +49,7 @@ export function loadLists(id) {
   }
 }
 
+// get cards
 export function fetchCardsSuccess(list_id, cards) {
   return {
     type: types.FETCH_CARDS_SUCCESS,
@@ -71,6 +72,7 @@ export function loadCards(id) {
   }
 }
 
+// save card
 export function saveCard(list_id, name) {
   return {
     type: types.SAVE_CARD,
@@ -83,10 +85,9 @@ export function saveCard(list_id, name) {
 
 export function saveCardOpt(list_id, name) {
   return dispatch => {
-    // save card optimistic way
-    dispatch(saveCard(list_id, name))
     return TrelloAPI.postCard(list_id, name)
       .then(response => {
+        dispatch(saveCard(list_id, name))
         console.info('succes saving card', response.data.payload)
       })
       .catch(error => {
@@ -96,6 +97,7 @@ export function saveCardOpt(list_id, name) {
   }
 }
 
+// delete card
 export function deleteCard(list_id, name) {
   return {
     type: types.DELETE_CARD,
@@ -105,6 +107,49 @@ export function deleteCard(list_id, name) {
     }
   };
 }
+
+// move card
+export function moveCard(card_id, target_list, origin_list) {
+  return {
+    type: types.MOVE_CARD,
+    payload: {
+      card_id: card_id,
+      target_list: target_list,
+      origin_list: origin_list
+    }
+  };
+}
+
+/*
+  {
+  id: "59cd9d2a68a935fa72257f5c",
+  name: "Design Layout",
+  desc: "Talk to architect about office layout, how to take advantage of spaces",
+  origin: "59cd98e6484b7bbd8b81487a",
+  target: "59cd98e6484b7bbd8b81487b"
+  }
+*/
+
+export function moveCardOpt(card) {
+  const card_id = card.id,
+        target_list = card.target,
+        origin_list = card.origin
+
+  return dispatch => {
+    // move card the `optimistic` way
+    dispatch(moveCard(card_id, target_list, origin_list))
+    return TrelloAPI.moveCard(card_id, target_list)
+      .then(response => {
+        console.info('succes moving card', response.data.payload)
+      })
+      .catch(error => {
+        dispatch(deleteCard(card_id, target_list, origin_list))
+        throw(error)
+      })
+  }
+}
+
+
 
 
 

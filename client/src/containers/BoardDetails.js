@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { Row } from 'reactstrap'
-import { saveCardOpt } from '../actions/trello_actions'
+import { saveCardOpt, moveCardOpt } from '../actions/trello_actions'
 import CardList from './CardList'
 
 class BoardDetails extends Component {
@@ -22,6 +22,10 @@ class BoardDetails extends Component {
 
   handleSaveCard = (list_id, name) => {
     this.props.createNewCard(list_id, name)
+  }
+
+  handleDrop = (card) => {
+    this.props.moveCard(card)
   }
 
   render() {
@@ -44,6 +48,7 @@ class BoardDetails extends Component {
               key={list.id}
               list={list}
               saveCard={this.handleSaveCard}
+              onDrop={this.handleDrop}
             />
           ))}
         </Row>
@@ -62,6 +67,9 @@ function mapDispatchToProps(dispatch) {
   return {
     createNewCard: (list_id, name) => {
       dispatch(saveCardOpt(list_id, name));
+    },
+    moveCard: (card_id, list_id) => {
+      dispatch(moveCardOpt(card_id, list_id));
     }
   };
 }

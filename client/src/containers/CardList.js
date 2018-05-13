@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import { Card, CardTitle, CardText, Button, Row, Col, Form, FormGroup, Input } from 'reactstrap'
+import { Card, CardTitle, Button, Col, Form, FormGroup, Input } from 'reactstrap'
 
 import TrelloCard from '../components/TrelloCard'
 
@@ -13,7 +12,8 @@ class CardList extends Component {
 
   static propTypes = {
     list: PropTypes.object.isRequired,
-    saveCard: PropTypes.func.isRequired
+    saveCard: PropTypes.func.isRequired,
+    onDrop: PropTypes.func
   }
 
   handleOnChange = ({target: {name, value}}) => {
@@ -33,6 +33,24 @@ class CardList extends Component {
 
     this.setState({formOpen: false, cardName: ''})
   }
+
+  handleDragStart = (card) => {
+    // console.log(card);
+    // this.props.onDrag(card)
+  }
+
+  handleDrop = (event) => {
+    const card = JSON.parse(event.dataTransfer.getData('card'))
+    // card is dropped in same list, return
+    if(card.origin === this.props.list.id) return
+
+    this.props.onDrop({
+      ...card,
+      target: this.props.list.id
+    })
+  }
+
+  handleDragOver = (e) => { e.preventDefault() }
 
   _renderFormOrButton = () => {
     if(!this.state.formOpen) {
@@ -67,7 +85,12 @@ class CardList extends Component {
       return (
         <div>
           {this.props.list.cards.map(card => (
-            <TrelloCard key={card.id} name={card.name} />
+            <TrelloCard
+              key={card.id}
+              card={{...card, origin: this.props.list.id}}
+
+              // onDrag={this.handleDragStart}
+            />
           ))}
         </div>
       )
@@ -76,10 +99,15 @@ class CardList extends Component {
   }
 
   render() {
-    console.info(this.props.list)
+    // console.info(this.props.list)
     return (
       <Col sm="4">
-        <Card body style={{backgroundColor: '#e2e4e6'}}>
+        <Card
+          body
+          style={{backgroundColor: '#e2e4e6'}}
+          onDrop={this.handleDrop}
+          onDragOver={this.handleDragOver}
+        >
           <CardTitle>{this.props.list.name || '???'}</CardTitle>
 
           {this._renderCards()}

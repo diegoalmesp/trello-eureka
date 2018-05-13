@@ -1,0 +1,17 @@
+{
+  "id": "59cd96757b727f56feff9e6c",
+  "name": "Welcome Board",
+  "prefs": {
+      "backgroundColor": "#4BBF6B"
+  },
+  "lists": [
+      {
+          "id": "59cd96757b727f56feff9e6d",
+          "name": "Stuff to try (this is a list)"
+      },
+      {
+          "id": "59cd96757b727f56feff9e6e",
+          "name": "Tried it (another list)"
+      }
+  ]
+}

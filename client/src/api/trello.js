@@ -25,6 +25,10 @@ class TrelloAPI {
   static postCard(list_id, name) {
     return ax.post(`/postCard?list_id=${list_id}&name=${name}`)
   }
+
+  static moveCard(card_id, list_id) {
+    return ax.put(`/moveCard?card_id=${card_id}&list_id=${list_id}`)
+  }
 }
 
 export default TrelloAPI;

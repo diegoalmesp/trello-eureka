@@ -36,8 +36,8 @@ export function reducer (state = initialState, action) {
 
     case types.SAVE_CARD:
       // find the list and store the new card
-      let cardUpdated = { ...state.lists }
-      cardUpdated.lists.forEach(list => {
+      let cardsUpdated = { ...state.lists }
+      cardsUpdated.lists.forEach(list => {
         if(list.id ===action.payload.list_id) {
           list.cards.push({
             id: Date.now(),
@@ -47,7 +47,31 @@ export function reducer (state = initialState, action) {
       })
       return {
         ...state,
-        lists: cardUpdated
+        lists: cardsUpdated
+      }
+
+    case types.MOVE_CARD:
+      // find the card in the old list and save it in the new one
+      let cardsMoved = { ...state.lists }
+      let movingCard = []
+      const { card_id, target_list, origin_list } = action.payload
+
+      cardsMoved.lists.forEach(list => {
+        if(list.id === origin_list) {
+          const index = list.cards.findIndex(card => card.id === card_id)
+          // remove card and save it in `movingCard`
+          movingCard = list.cards.splice(index, 1)
+          cardsMoved.lists.forEach(list => {
+            if(list.id === target_list) {
+              // find the new list and add the removed card
+              list.cards.push(movingCard[0])
+            }
+          })
+        }
+      })
+      return {
+        ...state,
+        lists: cardsMoved
       }
 
     case types.DELETE_CARD:

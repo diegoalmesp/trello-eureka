@@ -4,4 +4,4 @@ export const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
 export const FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS';
 export const SAVE_CARD = 'SAVE_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
-export const MOVE_CARD_SUCCESS = 'MOVE_CARD_SUCCESS';
+export const MOVE_CARD = 'MOVE_CARD';

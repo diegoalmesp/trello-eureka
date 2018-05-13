@@ -1,21 +1,34 @@
 {
-  "name": "trello-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "trello-eureka",
+  "version": "1.0.0",
+  "description": "Trello like app with create react app and reactstrap",
+  "author": {
+    "name": "Diego Almirón",
+    "email": "diegoalmesp@gmail.com",
+    "url": ""
+  },
+  "license": "MIT",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon index.js --exec babel-node",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^4.1.1",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "reactstrap": "^6.0.1"
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "concurrently": "^3.5.1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "create-react-app",
+    "reactstrap",
+    "redux"
+  ]
 }

@@ -5,6 +5,7 @@ import { Row } from 'reactstrap'
 import { saveCardOpt, moveCardOpt } from '../actions/trello_actions'
 import CardList from './CardList'
 import Loading from '../components/common/loading'
+import './BoardDetails.css'
 
 class BoardDetails extends Component {
   state = {
@@ -35,14 +36,8 @@ class BoardDetails extends Component {
     }
     return (
       <div
-        style={
-          {
-            backgroundColor: this.state.lists.prefs.backgroundColor,
-            padding: '15px',
-            minHeight: '100vh',
-            backgroundSize: 'cover'
-          }
-        }
+        className="BoardDetails"
+        style={{backgroundColor: this.state.lists.prefs.backgroundColor}}
       >
         <h4 style={{color: '#fff'}}>{this.state.lists.name}</h4>
         <Row>

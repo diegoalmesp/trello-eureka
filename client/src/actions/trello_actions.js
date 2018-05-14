@@ -24,7 +24,7 @@ export function loadBoards() {
         .catch(error => {
           throw(error)
         })
-    }, 1000)
+    }, 1500)
   }
 }
 

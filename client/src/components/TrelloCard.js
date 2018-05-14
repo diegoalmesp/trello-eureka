@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Card, CardText } from 'reactstrap'
-
-const styles = {
-  fontSize: '.9rem',
-  color: '#666',
-  padding: '9px',
-  marginBottom: '5px'
-}
+import './TrelloCard.css'
 
 class TrelloCard extends Component {
   static propTypes = {
@@ -24,9 +18,9 @@ class TrelloCard extends Component {
   render() {
     return (
       <Card
+        className="TrelloCard"
         body
         draggable
-        style={styles}
         onDragStart={this.handleDragStart}
       >
         <CardText>{this.props.card.name}</CardText>

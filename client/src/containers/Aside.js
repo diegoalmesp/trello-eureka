@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { loadLists } from '../actions/trello_actions'
 import Loading from '../components/common/loading'
+import './Aside.css';
 
 class Aside extends Component {
   state = {
@@ -36,18 +37,17 @@ class Aside extends Component {
       )
     }
     return (
-      <div>
+      <div className="Aside">
         {asideTitle}
         <Nav vertical>
           {this.state.boards.map(board => (
-            <NavItem key={board.id} style={{
-              backgroundColor: board.prefs.backgroundColor,
-              margin: '5px',
-              border: '6px solid rgb(226, 228, 230)',
-              borderRadius: '5px'
-            }}>
+            <NavItem
+              key={board.id}
+              className="Item"
+              style={{backgroundColor: board.prefs.backgroundColor}}
+            >
               <NavLink
-                style={{color: '#000'}}
+                className="Link"
                 href="#"
                 onClick={() => this.handleNavClick(board.id)}
               >{board.name}</NavLink>

@@ -1,0 +1,6 @@
+.Aside .Item {
+  margin: 5px;
+  border: 6px solid #e2e4e6;
+  border-radius: 5px; }
+  .Aside .Item .Link {
+    color: #000; }

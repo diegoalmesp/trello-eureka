@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Row } from 'reactstrap'
 import { saveCardOpt, moveCardOpt } from '../actions/trello_actions'
 import CardList from './CardList'
+import Loading from '../components/common/loading'
 
 class BoardDetails extends Component {
   state = {
@@ -30,14 +31,16 @@ class BoardDetails extends Component {
 
   render() {
     if(Object.keys(this.state.lists).length === 0) {
-      return <p>loading details...</p>
+      return <Loading color='burlywood'/> // <p className="lead">loading details...</p>
     }
     return (
       <div
         style={
           {
             backgroundColor: this.state.lists.prefs.backgroundColor,
-            padding: '15px'
+            padding: '15px',
+            minHeight: '100vh',
+            backgroundSize: 'cover'
           }
         }
       >

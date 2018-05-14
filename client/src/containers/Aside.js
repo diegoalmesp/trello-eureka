@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { loadLists } from '../actions/trello_actions'
+import Loading from '../components/common/loading'
 
 class Aside extends Component {
   state = {
@@ -24,13 +25,13 @@ class Aside extends Component {
   }
 
   render() {
-    const asideTitle = <p>Board List</p>
+    const asideTitle = <h4 className="text-center">Board List</h4>
 
     if(!this.state.boards.length) {
       return (
         <div>
           {asideTitle}
-          <p>loading boards...</p>
+          <Loading color='burlywood'/> {/*<p className="lead">loading boards...</p>*/}
         </div>
       )
     }
@@ -39,11 +40,17 @@ class Aside extends Component {
         {asideTitle}
         <Nav vertical>
           {this.state.boards.map(board => (
-            <NavItem key={board.id} style={{backgroundColor: board.prefs.backgroundColor}}>
+            <NavItem key={board.id} style={{
+              backgroundColor: board.prefs.backgroundColor,
+              margin: '5px',
+              border: '6px solid rgb(226, 228, 230)',
+              borderRadius: '5px'
+            }}>
               <NavLink
-              href="#"
-              onClick={() => this.handleNavClick(board.id)}
-            >{board.name}</NavLink>
+                style={{color: '#000'}}
+                href="#"
+                onClick={() => this.handleNavClick(board.id)}
+              >{board.name}</NavLink>
             </NavItem>
           ))}
         </Nav>

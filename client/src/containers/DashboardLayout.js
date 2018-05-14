@@ -6,7 +6,6 @@ import {createStore, applyMiddleware} from 'redux'
 import {reducer} from '../reducers/trello_reducer'
 import { loadBoards } from '../actions/trello_actions'
 
-import Header from './Header'
 import Aside from './Aside'
 import BoardDetails from './BoardDetails'
 
@@ -27,7 +26,6 @@ class DashboardLayout extends Component {
                 <Aside />
               </Col>
               <Col>
-                {/*<Header />*/}
                 <BoardDetails />
               </Col>
             </Row>

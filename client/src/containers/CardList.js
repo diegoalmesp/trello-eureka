@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Card, CardTitle, Button, Col, Form, FormGroup, Input } from 'reactstrap'
 
 import TrelloCard from '../components/TrelloCard'
+import Loading from '../components/common/loading'
 
 class CardList extends Component {
   state = {
@@ -95,7 +96,7 @@ class CardList extends Component {
         </div>
       )
     }
-    return null
+    return <Loading color='burlywood'/> // <p className="lead">loading cards...</p>
   }
 
   render() {

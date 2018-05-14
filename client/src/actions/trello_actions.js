@@ -120,16 +120,6 @@ export function moveCard(card_id, target_list, origin_list) {
   };
 }
 
-/*
-  {
-  id: "59cd9d2a68a935fa72257f5c",
-  name: "Design Layout",
-  desc: "Talk to architect about office layout, how to take advantage of spaces",
-  origin: "59cd98e6484b7bbd8b81487a",
-  target: "59cd98e6484b7bbd8b81487b"
-  }
-*/
-
 export function moveCardOpt(card) {
   const card_id = card.id,
         target_list = card.target,

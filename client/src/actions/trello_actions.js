@@ -12,16 +12,19 @@ export function fetchBoardsSuccess(boards) {
 export function loadBoards() {
   return dispatch => {
     // first fetch the list of boards
-    return TrelloAPI.getAllBoards()
-      .then(response => {
-        // populate the boards in the store
-        dispatch(fetchBoardsSuccess(response.data.payload))
-        // then fetch the firt board id to populate the details page
-        return dispatch(loadLists(response.data.payload[0].id))
-      })
-      .catch(error => {
-        throw(error)
-      })
+    // the delay prevents the react loading before the nodejs and thus givin a fetch error
+    setTimeout(() => {
+      return TrelloAPI.getAllBoards()
+        .then(response => {
+          // populate the boards in the store
+          dispatch(fetchBoardsSuccess(response.data.payload))
+          // then fetch the firt board id to populate the details page
+          return dispatch(loadLists(response.data.payload[0].id))
+        })
+        .catch(error => {
+          throw(error)
+        })
+    }, 1000)
   }
 }
 

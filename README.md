@@ -18,6 +18,8 @@ cd client
 yarn
 ```
 
+Then, inside the `/client` folder, rename the `default.env`file to `.env`and change the `REACT_APP_DEFAULT_USR` to your user.
+
 To start the server and client at the same time (from the root of the project)
 
 ```
